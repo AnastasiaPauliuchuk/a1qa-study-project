@@ -13,7 +13,8 @@ public final class Logger {
 	 */
 	public enum Locale {
 		EN,
-		RU
+		RU,
+		BLR
 	}
 
 	private static final Locale DEF_LOCALE = Locale.EN;

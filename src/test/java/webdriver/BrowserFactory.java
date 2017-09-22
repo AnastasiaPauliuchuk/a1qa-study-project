@@ -22,6 +22,8 @@ import static webdriver.Logger.getLoc;
  */
 public abstract class BrowserFactory {
 
+    private String nothing = "don't remove me";
+
     /**
      * Setting up Driver
      *
