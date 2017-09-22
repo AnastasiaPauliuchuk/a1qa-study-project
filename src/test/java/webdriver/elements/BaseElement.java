@@ -23,7 +23,7 @@ public abstract class BaseElement extends BaseEntity {
 
     private static final String ID = "id=";
     private static final String CSS = "css=";
-    private static final int TIMEOUT_WAIT_0 = 0;
+    private static final int TIMEOUT_WAIT_0 = 10;
 
     protected String name;
     protected By locator;
@@ -66,6 +66,7 @@ public abstract class BaseElement extends BaseEntity {
             clearLoc = stringLocator.replaceFirst(ID, "");
             locator = By.id(clearLoc);
             name = nameOfElement;
+            logger.fatal("bla bla bla");
         } else if (stringLocator.contains(LINK)) {
             clearLoc = stringLocator.replaceFirst(LINK, "");
             locator = By.linkText(clearLoc);

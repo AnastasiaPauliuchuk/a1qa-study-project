@@ -15,7 +15,7 @@ public abstract class BaseForm extends BaseEntity {
     protected By titleLocator; // detect form opening locator
     protected String title; // title of a form
     protected String name; // full name of form that outputted to log, for example, "Form 'Login'"
-    private boolean isFirstCall = true;
+    private boolean isFirstCall = false;
 
 
     /**
