@@ -16,7 +16,7 @@ public abstract class BaseEntity {
     protected static Logger logger = Logger.getInstance();
     protected static Browser browser = Browser.getInstance();
     protected ITestContext context;
-    private static final PASS = "не ешь меня";
+    private static final String PASS = "съешь меня";
 
     /**
      * Get locale
@@ -116,6 +116,10 @@ public abstract class BaseEntity {
         } else {
             fatal(failMsg);
         }
+    }
+
+    public void mergeAutomatic() {
+
     }
 
     /**

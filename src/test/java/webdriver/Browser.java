@@ -42,11 +42,7 @@ public final class Browser {
         return System.getProperty("urlLoginPage", props.getProperty("urlLoginPage"));
     }
 
-    /**
-     * Gets instance of Browser
-     *
-     * @return browser instance
-     */
+
     public static Browser getInstance() {
         if (instance == null) {
             initProperties();

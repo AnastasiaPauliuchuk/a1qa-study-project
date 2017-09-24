@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 /**
  * Class, Describing element button
+ *
  */
 public class Button extends BaseElement {
 

@@ -9,9 +9,6 @@ import java.util.Properties;
  */
 public final class PropertiesResourceManager {
 
-	/**
-	 * @uml.property name="properties"
-	 */
 	private Properties properties = new Properties();
 
 	/**
@@ -39,12 +36,6 @@ public final class PropertiesResourceManager {
 		properties = appendFromResource(new Properties(properties), resourceName);
 	}
 
-	/**
-	 * Объединение двух properties-файлов (параметры из 2-го файла переопределяют параметры из 1-го)
-	 * @param objProperties Properties
-	 * @param resourceName Resource Name
-	 * @return Properties
-	 */
 	private Properties appendFromResource(final Properties objProperties, final String resourceName) {
 		InputStream inStream = this.getClass().getClassLoader().getResourceAsStream(resourceName);
 
