@@ -16,6 +16,8 @@ public abstract class BaseForm extends BaseEntity {
     protected String title; // title of a form
     protected String name; // full name of form that outputted to log, for example, "Form 'Login'"
     private boolean isFirstCall = false;
+    private String trumPurum = "Трум-пурум-пум, трум-пурум-пум пум-пурум-пум",
+
 
 
     /**

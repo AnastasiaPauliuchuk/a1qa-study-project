@@ -31,6 +31,10 @@ public abstract class BaseEntity {
     // ==============================================================================================
     // Methods for logging
 
+    public void mergeAutomatic2() {
+
+    }
+
     /**
      * Logging a step number.
      *
@@ -185,7 +189,6 @@ public abstract class BaseEntity {
     }
 
     public void mergeAutomatic3() {
-        String yaZabilTochkySZapyatoi = "mana-mana"
+        String yaNeZabilTochkySZapyatoi = "mana-mana";
     }
-
 }

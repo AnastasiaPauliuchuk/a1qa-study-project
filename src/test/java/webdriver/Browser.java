@@ -17,12 +17,6 @@ import static webdriver.Logger.getLoc;
  */
 public final class Browser {
 
-    /**
-     * defaultPageLoadTimeout=60 defaultConditionTimeout=180
-     * urlLoginPage=http://opensesame:%23pears0n@dev.pearsoninnovationlabs.com/ #overrided in
-     * Browser.initProperties-default=firefox; #if null - use argument 'browser' to JVM; if other value (without '*'),
-     * #will use it as browserStartCommand #Usage: #firefox #iexplore #chrome #null browser=iexplore
-     */
     static final String PROPERTIES_FILE = "selenium.properties";
     private static final long IMPLICITY_WAIT = 10;
     private static final String DEFAULT_CONDITION_TIMEOUT = "defaultConditionTimeout";
