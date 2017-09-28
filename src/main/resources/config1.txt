@@ -1,0 +1,2 @@
+string1=1 2 3 4 h hh, hhh
+string2=hhh,3 - 4 2
