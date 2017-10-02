@@ -3,53 +3,57 @@ package com.anp.task;
 import com.anp.reader.MyDataReader;
 import com.anp.reader.MyDataResourcePropReader;
 import com.anp.writer.MyDataConsoleWriter;
+import com.anp.writer.MyDataWriter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.*;
+import java.io.IOException;
+import java.util.regex.*;
+
+import java.util.*;
 
 /**
  * Created by KAPPA on 9/27/2017.
  */
 public class MyTask1 extends MyTask {
 
-    public MyTask1(String resourceFilename, ArrayList<String> inputVarNames, MyDataReader dataReader)
+   public MyTask1( ArrayList<String> inputVarNames, MyDataReader dataReader, MyDataWriter dataWriter)
     {
-        //this.resourceFilename=resourceFilename;
+
         this.inputVarNames = inputVarNames;
         this.dataReader = dataReader;
-            //new MyDataResourcePropReader();
-        dataReader.init(resourceFilename);
-
-        this.dataWriter = new MyDataConsoleWriter();
+        this.dataWriter = dataWriter;
+      //  this.resourceFilename=resourceFilename;
     }
 
-    public Map<String, String> doTask(Map<String, String> vars) {
-        String str1 = vars.get("string1");
-        String str2 = vars.get("string2");
-
-        // String[] sp1=;
-
-        ArrayList<String> split1 = new ArrayList<>(Arrays.asList(str1.split(" ")));
-        ArrayList<String> split2 = new ArrayList<>(Arrays.asList(str2.split(" ")));
+    public Map<String, String> doTask(Map <String,String> vars) {
 
 
-        // String[] split21=str2.split("\\p{P}?[ \\t\\n\\r]+");
-        //System.out.println(split1));
-        for (String str : split1) {
-            System.out.println(str);
+        String str1=vars.get(this.inputVarNames.get(0));
+        String str2=vars.get(this.inputVarNames.get(1));
+
+
+        Pattern pSplit = Pattern.compile("\\W+");
+
+        String[] wordsFromString2=pSplit.split(str2);
+        String buffer = str1;
+        for (String str : wordsFromString2) {
+            Pattern p=Pattern.compile(str);
+            Matcher m=p.matcher(buffer);
+            buffer= m.replaceAll(" ");
         }
-        for (String str : split2) {
-            System.out.println(str);
+
+        String[] wordsFromString1=pSplit.split(buffer);
+        String finalStr="";
+        for(String word:wordsFromString1)
+        {
+            finalStr=finalStr+"\n"+word;
         }
-        split1.removeAll(split2);
-        String finalStr = String.join(" ", split1);
 
-
-        Map<String,String> result=new HashMap<String, String>() {{
-            put("Результат", finalStr);
+        String finalStr1 = finalStr;
+        Map<String,String> res=new HashMap<String, String>() {{
+            put("Результат исключения слов второй строки из первой", finalStr1 );
         }};
-        return result;
+
+        return res;
     }
 }

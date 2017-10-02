@@ -12,12 +12,13 @@ import java.util.Properties;
 public class MyDataResourcePropReader extends MyDataResourceReader {
 
 
-    /*public void init(String resourceFilename) {
-        super(resourceFilename);
+    public MyDataResourcePropReader(String resourceFilename) {
+        this.resourceFilename = resourceFilename;
 
-    }*/
+    }
 
-    public Map<String, String> readData(ArrayList<String> keys) {
+
+    public Map<String, String> readData(ArrayList<String> keys) throws IOException {
 
         Map map = new HashMap<String, String>();
         Properties prop = new Properties();

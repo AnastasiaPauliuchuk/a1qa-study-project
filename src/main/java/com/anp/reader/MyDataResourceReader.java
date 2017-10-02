@@ -11,22 +11,30 @@ import java.util.Map;
 public abstract class MyDataResourceReader implements MyDataReader {
 
     protected InputStream inputStream ;
+    protected String resourceFilename;
 
-    public void init(String dataFilename) {
+    public MyDataResourceReader()
+    {
+
+    }
+
+    public boolean init() {
 
         InputStream is = null;
         Class cls;
-        cls = getClass();
+        cls=MyDataResourcePropReader.class;
         ClassLoader classLoader = cls.getClassLoader();
         try {
 
-            is =classLoader.getResourceAsStream(dataFilename);
+            is =classLoader.getResourceAsStream(this.resourceFilename);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         this.inputStream = is;
+        if(is==null) return false;
+        return true;
     }
 
-    public abstract Map<String, String> readData(ArrayList<String> keys);
+    public abstract Map<String, String> readData(ArrayList<String> keys) throws IOException;
 }

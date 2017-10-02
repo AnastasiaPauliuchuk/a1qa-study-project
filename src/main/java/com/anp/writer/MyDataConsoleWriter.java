@@ -7,7 +7,13 @@ import java.util.Map;
  */
 public class MyDataConsoleWriter implements MyDataWriter {
 
+    public MyDataConsoleWriter(String header)
+    {
+        System.out.println(header);
+    }
+
     public void writeData(Map<String, String> data) {
+        //System.out.println(this.getClass().getSuperclass());
         for (Map.Entry<String, String> entry : data.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }

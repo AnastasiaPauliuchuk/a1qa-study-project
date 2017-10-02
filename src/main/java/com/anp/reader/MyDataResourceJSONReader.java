@@ -1,5 +1,11 @@
 package com.anp.reader;
 
+import org.apache.commons.io.IOUtils;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
+
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,23 +15,27 @@ import java.util.Map;
  */
 public class MyDataResourceJSONReader extends MyDataResourceReader {
 
-    /*public MyDataResourceJSONReader(String dataFilename) {
-        super(dataFilename);
-    }*/
+    public MyDataResourceJSONReader(String resourceFilename) {
+        this.resourceFilename = resourceFilename;
+    }
 
-    public Map<String, String> readData(ArrayList<String> keys) {
 
-        Map map = new HashMap<String, String>();
+    public Map<String, String> readData(ArrayList<String> keys) throws IOException {
 
-      /*  Properties prop=new Properties();
+        Map <String,String> map = new HashMap <String, String>();
+        StringWriter sw = new StringWriter();
+        IOUtils.copy(this.inputStream, sw, "UTF8");
+        String jsonString = sw.toString();
+        ObjectMapper mapper = new ObjectMapper();
         try {
-            prop.load(this.inputStream);
+            map = mapper.readValue(jsonString,
+                    new TypeReference<HashMap<String, String>>(){});
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String k:keys) {
-            map.put(k,prop.getProperty(k));
-        }*/
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
         return map;
     }
 
