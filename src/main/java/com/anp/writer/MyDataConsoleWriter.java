@@ -3,7 +3,7 @@ package com.anp.writer;
 import java.util.Map;
 
 /**
- * Created by KAPPA on 9/28/2017.
+ * Created by Anastasia Pauliuchuk on 9/28/2017.
  */
 public class MyDataConsoleWriter implements MyDataWriter {
 

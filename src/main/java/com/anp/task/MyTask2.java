@@ -1,7 +1,6 @@
 package com.anp.task;
 
 import com.anp.reader.MyDataReader;
-import com.anp.writer.MyDataConsoleWriter;
 import com.anp.writer.MyDataWriter;
 
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by KAPPA on 10/1/2017.
+ * Created by Anastasia Pauliuchuk on 10/1/2017.
  */
 public class MyTask2 extends MyTask {
 

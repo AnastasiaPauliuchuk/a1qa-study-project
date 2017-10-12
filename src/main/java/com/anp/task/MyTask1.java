@@ -1,18 +1,16 @@
 package com.anp.task;
 
 import com.anp.reader.MyDataReader;
-import com.anp.reader.MyDataResourcePropReader;
-import com.anp.writer.MyDataConsoleWriter;
 import com.anp.writer.MyDataWriter;
 
-import java.awt.*;
-import java.io.IOException;
-import java.util.regex.*;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Created by KAPPA on 9/27/2017.
+ * Created by Anastasia Pauliuchuk on 9/27/2017.
  */
 public class MyTask1 extends MyTask {
 

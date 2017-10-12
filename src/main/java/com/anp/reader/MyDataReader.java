@@ -1,10 +1,11 @@
 package com.anp.reader;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
- * Created by KAPPA on 9/27/2017.
+ * Created by Anastasia Pauliuchuk on 9/27/2017.
  */
 public interface MyDataReader {
 

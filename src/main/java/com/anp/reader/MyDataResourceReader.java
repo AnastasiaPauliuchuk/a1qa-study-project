@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * Created by KAPPA on 9/28/2017.
+ * Created by Anastasia Pauliuchuk on 9/28/2017.
  */
 public abstract class MyDataResourceReader implements MyDataReader {
 

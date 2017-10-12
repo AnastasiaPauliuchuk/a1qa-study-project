@@ -4,14 +4,12 @@ import com.anp.reader.MyDataReader;
 import com.anp.writer.MyDataWriter;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 /**
- * Created by KAPPA on 9/27/2017.
+ * Created by Anastasia Pauliuchuk on 9/27/2017.
  */
 public abstract class MyTask {
 
