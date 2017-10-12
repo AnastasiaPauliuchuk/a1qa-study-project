@@ -22,7 +22,6 @@ public class Calc {
     private String calcOperator;
 
     public Calc() {
-
     }
 
     private void parse(String expression) throws NumberFormatException, ExpressionFormatException {
@@ -33,8 +32,6 @@ public class Calc {
         if (m.find()) {
             data = new CalcData(Double.parseDouble(m.group(1)), Double.parseDouble(m.group(3)), m.group(2));
         } else throw new ExpressionFormatException();
-
-
     }
 
     private Double roundTo3Digits(Double x) {
@@ -56,7 +53,6 @@ public class Calc {
     private Double divCalc() throws ArithmeticException {
 
         if (data.getValue2() == 0) throw new ArithmeticException();
-
         return roundTo3Digits(data.getValue1() / data.getValue2());
     }
 
@@ -82,35 +78,4 @@ public class Calc {
         }
         return res;
     }
-
-
 }
-
-class CalcData {
-
-    private Double value1;
-    private Double value2;
-    private String calcOperator;
-
-    public CalcData(Double value1, Double value2, String calcOperator) {
-        this.value1 = value1;
-        this.value2 = value2;
-        this.calcOperator = calcOperator;
-    }
-
-
-    public Double getValue1() {
-        return value1;
-    }
-
-
-    public Double getValue2() {
-        return value2;
-    }
-
-
-    public String getCalcOperator() {
-        return calcOperator;
-    }
-}
-
