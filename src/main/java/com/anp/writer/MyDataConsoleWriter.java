@@ -18,4 +18,9 @@ public class MyDataConsoleWriter implements MyDataWriter {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
+
+    @Override
+    public void writeData(String data) {
+        System.out.println(data);
+    }
 }

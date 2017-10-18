@@ -8,5 +8,7 @@ import java.util.Map;
 public interface MyDataWriter {
 
     public void writeData(Map<String, String> data);
+
+    public void writeData(String data);
 }
 
