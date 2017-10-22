@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="My test suite">
+    <test name="testingFF">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="searchString" value="специалист по тестированию"/>
+        <classes>
+            <class name="com.anp.seleniumtest.AutoTestTask4"/>
+        </classes>
+    </test>
+    <test name="testingChrome">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="searchString" value="специалист по тестированию"/>
+        <classes>
+            <class name="com.anp.seleniumtest.AutoTestTask4"/>
+        </classes>
+    </test>
+</suite>
