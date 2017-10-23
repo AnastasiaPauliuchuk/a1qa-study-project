@@ -14,7 +14,7 @@ import static com.anp.utils.Utils.removeCtrlSyms;
  * Job search results page
  *
  * @author Anastasia Pauliuchuk
- * @since 10/19/2017
+ * created 10/19/2017
  */
 public class SearchJobsPage extends JobsPage {
 

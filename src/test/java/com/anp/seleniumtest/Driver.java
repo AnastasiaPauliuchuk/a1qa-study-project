@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * Singleton Driver class
  *
  * @author Anastasia Pauliuchuk
- * @since 10/19/2017
+ * created 10/19/2017
  */
 public class Driver {
 

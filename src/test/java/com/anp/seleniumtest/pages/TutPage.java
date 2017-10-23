@@ -16,7 +16,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  * Abstract class for tut.by pages, implementation {@link PageTemplate}
  *
  * @author Anastasia Pauliuchuk
- * @since 10/19/2017
+ * created 10/19/2017
  */
 public abstract class TutPage implements PageTemplate {
 

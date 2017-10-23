@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
  * Jobs page www.jobs.tut.by
  *
  * @author Anastasia Pauliuchuk
- * @since 10/19/2017
+ * created 10/19/2017
  */
 public class JobsPage extends TutPage {
 

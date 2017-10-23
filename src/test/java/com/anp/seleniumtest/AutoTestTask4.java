@@ -18,10 +18,11 @@ import java.util.Date;
 import static com.anp.utils.Utils.buildRegExp;
 
 /**
- * Jobs page www.jobs.tut.by
+ * Parameters: browser name, query string
+ * Output: file src/test/resources/log.txt
  *
  * @author Anastasia Pauliuchuk
- * @since 10/19/2017
+ * created 10/19/2017
  */
 public class AutoTestTask4 {
 

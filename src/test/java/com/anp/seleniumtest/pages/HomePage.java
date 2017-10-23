@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 
 /** Home page www.tut.by
  * @author Anastasia Pauliuchuk
- * @since 10/19/2017
+ * created 10/19/2017
  */
 public class HomePage extends TutPage {
 
