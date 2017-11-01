@@ -46,6 +46,7 @@ public class SteamGameForm extends BaseForm {
         m = p.matcher(lbPrice.getText());
         if (m.find())
             assertEquals(Double.parseDouble(m.group(2)), prices.get("price"));
+        info("assert prices done");
     }
 
     public void goInstall() {

@@ -3,6 +3,7 @@ package task5;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.Assert;
+import webdriver.BaseEntity;
 import webdriver.Browser;
 import webdriver.Logger;
 import webdriver.PropertiesResourceManager;
@@ -18,7 +19,7 @@ import java.util.regex.Pattern;
  * @author Anastasia Pauliuchuk
  *         created:  10/29/2017.
  */
-public class FileDownloader {
+public class FileDownloader extends BaseEntity {
 
     private static final Integer TIME_INTERVAL = 2;
     private static final Integer TIMEOUT = 60;
@@ -92,7 +93,7 @@ public class FileDownloader {
         wait.until((WebDriver wd) -> !tmpFileExists());
 
         fileDownloaded = (String) getDirDifference().toArray()[0];
-        logger.info("File " + fileDownloaded + " downloaded");
+        info(getLoc("loc.downloaded"));
     }
 
 
@@ -114,4 +115,8 @@ public class FileDownloader {
 
     }
 
+    @Override
+    protected String formatLogMsg(String message) {
+        return String.format("%1$s : '%2$s' %3$s", getLoc("loc.file"), fileDownloaded, message);
+    }
 }

@@ -37,7 +37,7 @@ public class SteamGamesList extends BaseElement {
     }
 
     public void createList() {
-        waitForIsElementPresent();
+
         List<WebElement> list = this.getElement().findElements(By.xpath(String.format(ITEM_SELECTOR_TEMPLATE, "")));
 
         for (int i = 1; i <= list.size(); i++) {
@@ -48,6 +48,7 @@ public class SteamGamesList extends BaseElement {
     }
 
     public void searchMaxDiscountGame() {
+
 
         Label maxLabel = null;
         Double maxDiscount = 0.0;
@@ -69,7 +70,7 @@ public class SteamGamesList extends BaseElement {
         this.discount = maxDiscount;
         this.priceText = maxDiscountItem.getElement().findElement(By.cssSelector(D_PRICE_SELECTOR)).getText();
         this.oldPriceText = maxDiscountItem.getElement().findElement(By.cssSelector(D_OLD_PRICE_SELECTOR)).getText();
-        info("Max discount found: " + maxDiscount.toString());
+        info(getLoc("loc.maxdiscountfound") + ": " + maxDiscount.toString());
     }
 
     public Map<String, Double> getMaxDiscountValues() {
@@ -92,7 +93,7 @@ public class SteamGamesList extends BaseElement {
 
     @Override
     public String getElementType() {
-        return getLoc("loc.gameslist");
+        return getLoc("loc.list");
     }
 
 }

@@ -13,6 +13,12 @@ import webdriver.PropertiesResourceManager;
 /**
  * @author Anastasia Pauliuchuk
  *         created:  10/26/2017.
+ *
+ *     Test configuration properties:
+ *         site.language {en,ru}
+ *         aqa.locale {en,ru}
+ *         browser {chrome,firefox}
+ *         downloadPath
  */
 public class Task5Test extends BaseTest {
 
@@ -35,35 +41,35 @@ public class Task5Test extends BaseTest {
     public void runTest() {
 
         logger.step(1);
-        SteamBaseForm sf = new SteamBaseForm();
+        SteamBaseForm steamBaseForm = new SteamBaseForm();
 
         logger.step(2);
         //Switch language if necessary
-        sf.chooseLang(lang);
-        //If page reloaded
-        sf.assertMenuVisible();
+        if (steamBaseForm.chooseLang(lang))
+            steamBaseForm.assertMenuReload();
+
         //Hover menu Games
-        sf.mainMenu.selectItem(SteamMainMenu.Items.GAMES);
-        //If pulldown menu shown
-        sf.gamesMenu.assertSubMenu();
+        steamBaseForm.mainMenu.selectItem(SteamMainMenu.Items.GAMES);
+        //Whether popup menu shown
+        steamBaseForm.gamesMenu.assertSubMenu();
         //Click menu Action
-        sf.gamesMenu.selectItem(SteamGamesSubMenu.Items.ACTION);
+        steamBaseForm.gamesMenu.selectItem(SteamGamesSubMenu.Items.ACTION);
 
         logger.step(3);
-        SteamGamesListForm sgf = new SteamGamesListForm();
+        SteamGamesListForm steamGamesListForm = new SteamGamesListForm();
         //Switch tab Specials
-        sgf.mTabs.selectItem(StreamGamesTabs.Items.SPECIALS);
-
+        steamGamesListForm.mTabs.selectItem(StreamGamesTabs.Items.SPECIALS);
+        steamGamesListForm.mTabs.assertTab(StreamGamesTabs.Items.SPECIALS);
         logger.step(4);
-        //  sgf.lblList.createList();
+
         //Click item with max discount
-        sgf.selectMaxDiscountItem();
+        steamGamesListForm.selectMaxDiscountItem();
 
         logger.step(5);
         //If Age Check form appears, set age for adult content
-        SteamAgeForm saf = new SteamAgeForm();
-        if (saf.isDisplayed()) {
-            saf.selectAdultYear();
+        SteamAgeForm steamAgeForm = new SteamAgeForm();
+        if (steamAgeForm.isDisplayed()) {
+            steamAgeForm.selectAdultYear();
         }
 
         //If Age and Content check form appears, click View page button
@@ -75,7 +81,7 @@ public class Task5Test extends BaseTest {
         logger.step(6);
         SteamGameForm steamGameForm = new SteamGameForm();
         //Check discount, old price, final price
-        steamGameForm.assertPrices(sgf.getMaxDiscountValues());
+        steamGameForm.assertPrices(steamGamesListForm.getMaxDiscountValues());
 
         logger.step(7);
         //Click Install Steam button in page header
