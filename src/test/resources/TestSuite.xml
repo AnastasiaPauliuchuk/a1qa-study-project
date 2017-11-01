@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<suite name="Test Plan" verbose="1">
+
+    <test name="Functional Tests" preserve-order="true">
+
+        <classes>
+            <class name="task5.Task5Test"/>
+        </classes>
+    </test>
+</suite>
