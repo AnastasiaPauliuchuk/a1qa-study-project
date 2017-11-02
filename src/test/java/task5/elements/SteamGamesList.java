@@ -18,12 +18,15 @@ import java.util.regex.Pattern;
  */
 public class SteamGamesList extends BaseElement {
 
-    private final static String REGEXP_DISCOUNT = "^(-)(\\d{1,2})(%)";
+    private final static String REGEXP_DISCOUNT = "(-)(\\d{1,2})(%)";
     private final static String REGEXP_PRICE = "^(\\$)(\\d+\\.*\\d+)";
-    private final static String ITEM_SELECTOR_TEMPLATE = "//div[@id=\"DiscountsRows\"]/a%s/div[@class=\"discount_block tab_item_discount\"]";
-    private final static String D_SELECTOR = "div.discount_pct";
-    private final static String D_OLD_PRICE_SELECTOR = "div.discount_original_price";
-    private final static String D_PRICE_SELECTOR = "div.discount_final_price";
+    private final static String ITEM_SELECTOR_TEMPLATE =
+            "//div[@id=\"DiscountsRows\"]/a[contains(@class,\"tab_item\")]%s";
+    private final static String D_OLD_PRICE_XPATH = ".//div[@class=\"discount_block tab_item_discount\"]/div/div[@class=\"discount_original_price\"]";
+    private final static String D_PRICE_XPATH = ".//div[@class=\"discount_block tab_item_discount\"]/div/div[@class=\"discount_final_price\"]";
+    private final static String DISCOUNT_KEY = "discount";
+    private final static String OLDPRICE_KEY = "oldprice";
+    private final static String PRICE_KEY = "price";
     private ArrayList<Label> items;
     private Label maxDiscountItem;
     private Double discount;
@@ -45,6 +48,7 @@ public class SteamGamesList extends BaseElement {
             items.add(item);
 
         }
+        info("list created");
     }
 
     public void searchMaxDiscountGame() {
@@ -57,7 +61,7 @@ public class SteamGamesList extends BaseElement {
         Matcher m;
 
         for (Label l : items) {
-            m = p.matcher(l.getElement().findElement(By.cssSelector(D_SELECTOR)).getText());
+            m = p.matcher(l.getText());
             if (m.find()) {
                 d = Double.parseDouble(m.group(2));
                 if (d > maxDiscount) {
@@ -65,24 +69,25 @@ public class SteamGamesList extends BaseElement {
                     maxLabel = l;
                 }
             }
+
         }
         this.maxDiscountItem = maxLabel;
         this.discount = maxDiscount;
-        this.priceText = maxDiscountItem.getElement().findElement(By.cssSelector(D_PRICE_SELECTOR)).getText();
-        this.oldPriceText = maxDiscountItem.getElement().findElement(By.cssSelector(D_OLD_PRICE_SELECTOR)).getText();
+        this.priceText = maxDiscountItem.getElement().findElement(By.xpath(D_PRICE_XPATH)).getText();
+        this.oldPriceText = maxDiscountItem.getElement().findElement(By.xpath(D_OLD_PRICE_XPATH)).getText();
         info(getLoc("loc.maxdiscountfound") + ": " + maxDiscount.toString());
     }
 
     public Map<String, Double> getMaxDiscountValues() {
 
         Map<String, Double> map = new HashMap<String, Double>();
-        map.put("discount", this.discount);
+        map.put(DISCOUNT_KEY, this.discount);
         Pattern p = Pattern.compile(REGEXP_PRICE);
         Matcher m;
         m = p.matcher(this.priceText);
-        if (m.find()) map.put("price", Double.parseDouble(m.group(2)));
+        if (m.find()) map.put(PRICE_KEY, Double.parseDouble(m.group(2)));
         m = p.matcher(this.oldPriceText);
-        if (m.find()) map.put("oldprice", Double.parseDouble(m.group(2)));
+        if (m.find()) map.put(OLDPRICE_KEY, Double.parseDouble(m.group(2)));
         return map;
     }
 

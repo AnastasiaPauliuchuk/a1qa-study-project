@@ -17,6 +17,9 @@ public class SteamGameForm extends BaseForm {
 
     private final static String REGEXP_DISCOUNT = "^(-)(\\d{1,2})(%)";
     private final static String REGEXP_PRICE = "^(\\$)(\\d+\\.*\\d+)";
+    private final static String DISCOUNT_KEY = "discount";
+    private final static String OLDPRICE_KEY = "oldprice";
+    private final static String PRICE_KEY = "price";
     private Label lbPurchase = new Label(By.cssSelector("div.game_area_purchase"), "game purchase area");
     private Label lbDiscount = new Label(By.xpath(
 
@@ -38,15 +41,14 @@ public class SteamGameForm extends BaseForm {
         Pattern p = Pattern.compile(REGEXP_DISCOUNT);
         m = p.matcher(lbDiscount.getText());
         if (m.find())
-            assertEquals(Double.parseDouble(m.group(2)), prices.get("discount"));
+            assertEquals(Double.parseDouble(m.group(2)), prices.get(DISCOUNT_KEY));
         p = Pattern.compile(REGEXP_PRICE);
         m = p.matcher(lbOldPrice.getText());
         if (m.find())
-            assertEquals(Double.parseDouble(m.group(2)), prices.get("oldprice"));
+            assertEquals(Double.parseDouble(m.group(2)), prices.get(OLDPRICE_KEY));
         m = p.matcher(lbPrice.getText());
         if (m.find())
-            assertEquals(Double.parseDouble(m.group(2)), prices.get("price"));
-        info("assert prices done");
+            assertEquals(Double.parseDouble(m.group(2)), prices.get(PRICE_KEY));
     }
 
     public void goInstall() {
