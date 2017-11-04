@@ -22,13 +22,11 @@ public class SteamGameForm extends BaseForm {
     private final static String PRICE_KEY = "price";
     private Label lbPurchase = new Label(By.cssSelector("div.game_area_purchase"), "game purchase area");
     private Label lbDiscount = new Label(By.xpath(
-
-
-            "//div[@class=\"game_area_purchase_game\"]/div/div/div/div[@class=\"discount_pct\"]"), "discount");
+            "//div[@class=\"game_area_purchase_game\"]//div[@class=\"discount_pct\"]"), "discount");
     private Label lbOldPrice = new Label(By.xpath(
-            "//div[@class=\"game_area_purchase_game\"]/div/div/div/div/div[@class=\"discount_original_price\"]"), "oldprice");
+            "//div[@id=\"game_area_purchase\"]//div[@class=\"discount_prices\"]/div[@class=\"discount_original_price\"]"), "oldprice");
     private Label lbPrice = new Label(By.xpath(
-            "//div[@class=\"game_area_purchase_game\"]/div/div/div/div/div[@class=\"discount_final_price\"]"), "price");
+            "//div[@id=\"game_area_purchase\"]//div[@class=\"discount_prices\"]/div[@class=\"discount_final_price\"]"), "price");
     private Button btnInstall = new Button(By.xpath("//*[@id=\"global_action_menu\"]/div/a[contains(@class,\"header_install\")]"), "button install");
 
     public SteamGameForm() {

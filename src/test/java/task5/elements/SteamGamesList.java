@@ -22,8 +22,8 @@ public class SteamGamesList extends BaseElement {
     private final static String REGEXP_PRICE = "^(\\$)(\\d+\\.*\\d+)";
     private final static String ITEM_SELECTOR_TEMPLATE =
             "//div[@id=\"DiscountsRows\"]/a[contains(@class,\"tab_item\")]%s";
-    private final static String D_OLD_PRICE_XPATH = ".//div[@class=\"discount_block tab_item_discount\"]/div/div[@class=\"discount_original_price\"]";
-    private final static String D_PRICE_XPATH = ".//div[@class=\"discount_block tab_item_discount\"]/div/div[@class=\"discount_final_price\"]";
+    private final static String D_OLD_PRICE_XPATH = ".//div[@class=\"discount_block tab_item_discount\"]//div[@class=\"discount_original_price\"]";
+    private final static String D_PRICE_XPATH = ".//div[@class=\"discount_block tab_item_discount\"]//div[@class=\"discount_final_price\"]";
     private final static String DISCOUNT_KEY = "discount";
     private final static String OLDPRICE_KEY = "oldprice";
     private final static String PRICE_KEY = "price";

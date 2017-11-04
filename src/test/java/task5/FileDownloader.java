@@ -109,7 +109,7 @@ public class FileDownloader extends BaseEntity {
 
         Set<String> diff = getDirDifference();
         for (String file : diff) {
-            new File(downloadPath + "\\" + file).delete();
+            new File(downloadPath + File.separator + file).delete();
 
         }
 
