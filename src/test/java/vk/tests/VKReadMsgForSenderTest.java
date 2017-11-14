@@ -33,6 +33,7 @@ public class VKReadMsgForSenderTest extends BaseTest {
     public void runTest() {
 
         VKHomePage vkHomePage = new VKHomePage();
+
         Message msgSent = sendMessage(vkHomePage, user1, user2);
         VKInnerPage vkInnerPage = new VKInnerPage();
         vkInnerPage.logout();

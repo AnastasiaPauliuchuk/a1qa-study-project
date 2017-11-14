@@ -32,13 +32,13 @@ public class VKMyMessagesPage extends VKInnerPage {
         super(By.cssSelector("div.im-page"), "VK My Messages Page");
     }
 
-    public void assertMsgExists(Message msgSent, UserAccount user) {
+    public void assertMsgExists(UserAccount user) {
         assertConversationsIsPresent();
         Label lblMessageBlock = new Label(By.xpath(String.format(LBL_MSG_BLOCK_TEMPLATE, user.getId())), "msg block");
-        assert (lblMessageBlock.isPresent());
+        assert (lblMessageBlock.isVisible());
     }
 
-    public void assertMsgNotExists(Message msgSent, UserAccount user) {
+    public void assertMsgNotExists(UserAccount user) {
         assertConversationsIsPresent();
         Label lblMessageBlock = new Label(By.xpath(String.format(LBL_MSG_BLOCK_TEMPLATE, user.getId())), "msg block");
         assert (!lblMessageBlock.isPresent());

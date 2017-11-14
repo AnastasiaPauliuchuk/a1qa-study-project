@@ -90,15 +90,15 @@ public class VKTestMethods extends BaseEntity {
     }
 
     public static void testReadMessageForSender(VKPage startPage, Message msgSent) {
-        logger.step(1, String.format("Open userSender:%s account page", msgSent.getRecipient().getLocalFullname()));
+
         startPage.login(msgSent.getSender());
-        logger.step(2, "Go to messages");
+        logger.step(1, "Check the message sent displayed on Messages page");
         VKAccountPage vkAccountPage = new VKAccountPage();
         vkAccountPage.getMainMenu().selectItem(VKMainMenu.Items.MESSAGES);
         VKMyMessagesPage vkMyMessagesPage = new VKMyMessagesPage();
 
-        logger.step(3, "Check message's style: expect read-style");
-        vkMyMessagesPage.assertMsgExists(msgSent, msgSent.getRecipient());
+        logger.step(2, "Check the message displayed read-styled");
+        vkMyMessagesPage.assertMsgExists(msgSent.getRecipient());
         vkMyMessagesPage.assertReadMsg(msgSent, msgSent.getRecipient());
 
     }
@@ -112,33 +112,33 @@ public class VKTestMethods extends BaseEntity {
     }
 
     public static void testReadMessageForRecipient(VKPage startPage, Message msgSent) {
-        logger.step(1, String.format("Open userRecipient:%s account page", msgSent.getRecipient().getLocalFullname()));
         startPage.login(msgSent.getRecipient());
 
-        logger.step(2, "Go to messages");
+        logger.step(1, "Check the message sent displayed on Messages page");
         VKAccountPage vkAccountPage = new VKAccountPage();
 
 
         vkAccountPage.getMainMenu().selectItem(VKMainMenu.Items.MESSAGES);
         VKMyMessagesPage vkMyMessagesPage = new VKMyMessagesPage();
-        vkMyMessagesPage.assertMsgExists(msgSent, msgSent.getSender());
+        vkMyMessagesPage.assertMsgExists(msgSent.getSender());
+        logger.step(2, "Check the message displayed unread-styled");
         vkMyMessagesPage.assertUnreadMsg(msgSent, msgSent.getSender());
 
         logger.step(3, "Go to unread messages");
         vkMyMessagesPage.messagesMenu.selectItem(VKMessagesMenu.Items.UNREAD);
-        vkMyMessagesPage.assertMsgExists(msgSent, msgSent.getSender());
+        vkMyMessagesPage.assertMsgExists(msgSent.getSender());
         vkMyMessagesPage.assertUnreadMsg(msgSent, msgSent.getSender());
 
         logger.step(4, "Read the message");
         vkMyMessagesPage.goConversation(msgSent.getSender().getId());
 
-        logger.step(5, "Check message's style: expect read-style");
+        logger.step(5, "Check the message displayed read-styled");
         vkMyMessagesPage.messagesMenu.selectItem(VKMessagesMenu.Items.ALLMESSAGES);
         vkMyMessagesPage.assertReadMsg(msgSent, msgSent.getSender());
 
         logger.step(6, "Check message not exists in Unread");
         vkMyMessagesPage.messagesMenu.selectItem(VKMessagesMenu.Items.UNREAD);
-        vkMyMessagesPage.assertMsgNotExists(msgSent, msgSent.getSender());
+        vkMyMessagesPage.assertMsgNotExists(msgSent.getSender());
 
 
         logger.step(7, "Check new unread messages label not exists");
@@ -147,14 +147,21 @@ public class VKTestMethods extends BaseEntity {
 
     public static void testConversationHistory(VKPage startPage, Message msgSent, Message msgReceived) {
 
+        logger.step(1, String.format(msgSent.getSender().getLocalFullname() + " goes to "
+                + msgSent.getRecipient().getLocalFullname() + " page"));
         startPage.goToURL(msgSent.getRecipient().getPageURL());
         startPage.login(msgSent.getSender());
         VKUserAccountPage vkAccountPage = new VKUserAccountPage();
+        logger.step(2, "Open Write message pupup window");
         vkAccountPage.openMsgForm();
+        logger.step(3, "Go to conversation history");
         vkAccountPage.goHistory();
         VKMyMessagesPage vkMyMessagesPage = new VKMyMessagesPage();
+        logger.step(4, "Check the message details");
         vkMyMessagesPage.assertLastSentMsgDetails(msgReceived);
+        logger.step(5, "Check the message details");
         vkMyMessagesPage.assertLastSentMsgDetails(msgSent);
+        logger.step(6, "Check messages order");
         vkMyMessagesPage.assertOrder(msgSent, msgReceived);
 
     }

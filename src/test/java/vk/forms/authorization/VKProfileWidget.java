@@ -18,6 +18,7 @@ public class VKProfileWidget extends BaseElement {
 
         lblProfileLink.click();
         VKProfileMenu vkProfileMenu = new VKProfileMenu(PROFILE_MENU_LOC, "profile menu");
+        assert (vkProfileMenu.isVisible());
         vkProfileMenu.selectItem(VKProfileMenu.Items.LOGOUT);
     }
 

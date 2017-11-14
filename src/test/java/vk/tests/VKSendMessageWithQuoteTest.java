@@ -36,10 +36,11 @@ public class VKSendMessageWithQuoteTest extends BaseTest {
         vkInnerPage.logout();
 
 
+        logger.step(1, "Choose the message and reply");
         Message msgReply = replyMessage(vkInnerPage, msgSent);
 
         VKMyMessagesPage vkMyMessagesPage = new VKMyMessagesPage();
-
+        logger.step(2, "Check the message and the answer details");
         vkMyMessagesPage.assertMsgWithQuote(msgSent, msgReply);
     }
 
