@@ -2,6 +2,7 @@ package webdriver.elements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 
 
 /**
@@ -59,6 +60,15 @@ public class TextBox extends BaseElement {
             ((JavascriptExecutor) browser.getDriver()).executeScript("arguments[0].style.border='3px solid red'", element);
         }
         element.sendKeys(value);
+    }
+
+    public void submitPressingReturn() {
+        waitForIsElementPresent();
+
+        if (browser.getDriver() instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) browser.getDriver()).executeScript("arguments[0].style.border='3px solid red'", element);
+        }
+        element.sendKeys(Keys.RETURN);
     }
 
 

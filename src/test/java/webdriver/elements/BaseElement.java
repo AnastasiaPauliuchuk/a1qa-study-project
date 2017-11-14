@@ -226,7 +226,6 @@ public abstract class BaseElement extends BaseEntity {
         element.click();
     }
 
-    ;
 
     /**
      * Hover  the item.
@@ -314,11 +313,13 @@ public abstract class BaseElement extends BaseEntity {
 
             wait.until(ExpectedConditions.visibilityOf(this.getElement()));
 
-
+            info("is visible : " + true);
             return true;
         } catch (Exception e) {
+            info("is visible : " + false);
             return false;
         }
+
 
     }
 
@@ -329,8 +330,7 @@ public abstract class BaseElement extends BaseEntity {
             Wait<WebDriver> wait =
                     new FluentWait<WebDriver>(Browser.getInstance().getDriver())
                             .withTimeout(Long.parseLong(Browser.getInstance().getTimeoutForPageLoad()), TimeUnit.SECONDS)
-                            .pollingEvery(timeoutForCondition, TimeUnit.SECONDS)
-                            .ignoring(ElementNotVisibleException.class);
+                            .pollingEvery(timeoutForCondition, TimeUnit.SECONDS);
 
             wait.until(ExpectedConditions.invisibilityOf(this.getElement()));
 
@@ -343,4 +343,20 @@ public abstract class BaseElement extends BaseEntity {
     }
 
 
+    public boolean isContentChanged(String oldText) {
+
+        waitForIsElementPresent();
+        Wait<WebDriver> wait =
+                new FluentWait<WebDriver>(Browser.getInstance().getDriver())
+                        .withTimeout(Long.parseLong(Browser.getInstance().getTimeoutForPageLoad()), TimeUnit.SECONDS)
+                        .pollingEvery(Long.parseLong(Browser.getInstance().getTimeoutForCondition()), TimeUnit.SECONDS);
+
+
+        wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
+            public Boolean apply(final WebDriver driver) {
+                return !element.getText().equals(oldText);
+            }
+        });
+        return true;
+    }
 }

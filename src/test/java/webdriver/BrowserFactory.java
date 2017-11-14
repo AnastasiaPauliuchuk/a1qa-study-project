@@ -17,6 +17,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 
 import static webdriver.Logger.getLoc;
 
@@ -26,7 +27,15 @@ import static webdriver.Logger.getLoc;
 public abstract class BrowserFactory {
 
     private static final String DOWNLOAD_PROPERTIES_FILE = "download.properties";
+    private static final String BROWSER_PROPERTIES_FILE = "selenium.properties";
 
+    private static Map<String, String> localization;
+
+    static {
+        localization = new HashMap<String, String>();
+        localization.put("ru", "ru-RU");
+        localization.put("en", "en-US");
+    }
     /**
      * Setting up Driver
      *
@@ -42,9 +51,11 @@ public abstract class BrowserFactory {
         File myFile = null;
         URL myTestURL;
         String downloadPath = "";
+        String siteLanguage = "";
         try {
             PropertiesResourceManager prop = new PropertiesResourceManager(DOWNLOAD_PROPERTIES_FILE);
             downloadPath = prop.getProperty("downloadPath");
+            siteLanguage = prop.getProperty("site.language");
         } catch (Exception e) {
 
         }
@@ -64,10 +75,11 @@ public abstract class BrowserFactory {
                 chromePrefs.put("safebrowsing.enabled", true);
                 chromePrefs.put("profile.default_content_settings.popups", 0);
                 chromePrefs.put("download.prompt_for_download", "false");
-
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("prefs", chromePrefs);
                 options.addArguments("start-maximized", "disable-popup-blocking", "--incognito");
+
+                options.addArguments("--lang=" + localization.get(siteLanguage));
                 cp1.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
                 cp1.setCapability(ChromeOptions.CAPABILITY, options);
 
@@ -89,6 +101,7 @@ public abstract class BrowserFactory {
                 ffoptions.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
                         .addPreference("browser.download.folderList", 2)
                         .addPreference("browser.privatebrowsing.autostart", true);
+                // .addPreference("intl.accept_languages",localization.get(siteLanguage));
                 if (downloadPath.length() > 0) ffoptions.addPreference("browser.download.dir", downloadPath);
 
 

@@ -5,7 +5,12 @@
     <test name="Functional Tests" preserve-order="true">
 
         <classes>
-            <class name="task5.Task5Test"/>
+            <class name="vk.tests.VKSendTest"/>
+            <class name="vk.tests.VKReceiveTest"/>
+            <class name="vk.tests.VKReadMsgForRecipientTest"/>
+            <class name="vk.tests.VKReadMsgForSenderTest"/>
+            <class name="vk.tests.VKConversationHistoryTest"/>
+            <class name="vk.tests.VKSendMessageWithQuoteTest"/>
         </classes>
     </test>
 </suite>

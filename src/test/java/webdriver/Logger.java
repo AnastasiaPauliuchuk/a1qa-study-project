@@ -77,6 +77,10 @@ public final class Logger {
         logDelimMsg(getLoc("loc.logger.step") + String.valueOf(step));
     }
 
+
+    public void step(final int step, final String info) {
+        logDelimMsg(getLoc("loc.logger.step") + String.valueOf(step) + ": " + info);
+    }
     /**
      * Logging a several steps in a one action
      *
