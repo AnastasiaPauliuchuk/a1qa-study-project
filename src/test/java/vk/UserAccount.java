@@ -11,8 +11,6 @@ public class UserAccount {
     private static final String LOC_USER_PROPERTY_TEMPLATE = "%1$s.%2$s";
     private String login;
     private String password;
-    // private String name;
-    // private String surname;
     private String id;
     private String lang;
 
@@ -44,9 +42,6 @@ public class UserAccount {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getLocalName() {
         return LocalManager.getInstance().getLocalSetting(String.format(LOC_USER_PROPERTY_TEMPLATE, "name", this.id));
