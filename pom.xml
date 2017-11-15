@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>aqa.webdriver.framework</groupId>
-    <artifactId>aqa-framework</artifactId>
-    <name>WebDriverFramework</name>
+    <groupId>aqa</groupId>
+    <artifactId>aqa-kurs</artifactId>
+    <name>A1QAKurs</name>
     <!--<packaging>jar</packaging>-->
     <version>1.2.9-SNAPSHOT</version>
 
