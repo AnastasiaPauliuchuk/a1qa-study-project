@@ -19,10 +19,10 @@ public class VKTestMethods extends BaseEntity {
     public static Message sendMessage(VKPage startPage, UserAccount userSender, UserAccount userRecipient) {
 
         startPage.goToURL(userRecipient.getPageURL());
-        logger.info("[go to: " + userRecipient.getLocalFullname() + " page]");
+        logger.info("[go to recipient's page]");
         VKUserAccountPage vkAccountPage = new VKUserAccountPage();
         vkAccountPage.login(userSender);
-        logger.info("[login as: " + userSender.getLocalFullname() + " ]");
+        logger.info("[login");
         vkAccountPage.openMsgForm();
         logger.info("[write a message in popup form]");
         Message msgSent = vkAccountPage.sendMessageInPopup();
@@ -35,7 +35,7 @@ public class VKTestMethods extends BaseEntity {
 
     public static Message testSendMessage(VKPage startPage, UserAccount userSender, UserAccount userRecipient) {
 
-        logger.step(1, String.format(userSender.getLocalFullname() + " goes to " + userRecipient.getLocalFullname() + " page and send a message"));
+        logger.step(1, String.format("Go to recipient's page and send a message"));
         Message msgSent = sendMessage(startPage, userSender, userRecipient);
 
         logger.step(2, String.format("Check popup window displayed"));
@@ -64,7 +64,7 @@ public class VKTestMethods extends BaseEntity {
 
     public static void testReceiveMessage(VKPage startPage, UserAccount userRecipient, Message msgSent) {
 
-        logger.step(1, String.format("Login as ", userRecipient.getLocalFullname()));
+        logger.step(1, "Login");
         startPage.login(userRecipient);
         logger.step(2, "Check new unread messages label");
         VKAccountPage vkAccountPage = new VKAccountPage();
@@ -147,8 +147,7 @@ public class VKTestMethods extends BaseEntity {
 
     public static void testConversationHistory(VKPage startPage, Message msgSent, Message msgReceived) {
 
-        logger.step(1, String.format(msgSent.getSender().getLocalFullname() + " goes to "
-                + msgSent.getRecipient().getLocalFullname() + " page"));
+        logger.step(1, "Go to recipient's page");
         startPage.goToURL(msgSent.getRecipient().getPageURL());
         startPage.login(msgSent.getSender());
         VKUserAccountPage vkAccountPage = new VKUserAccountPage();

@@ -33,7 +33,8 @@ public abstract class Menu extends BaseElement {
 
     public void selectItem(final String itemName, String action) {
 
-        waitForIsElementPresent();
+        // waitForIsElementPresent();
+        waitForIsElementVisible();
         info(String.format(getLoc("loc.menuitem") + " '%1$s'", itemName));
         MenuItem item = getItem(itemName);
 
@@ -48,4 +49,6 @@ public abstract class Menu extends BaseElement {
                 break;
         }
     }
+
+
 }

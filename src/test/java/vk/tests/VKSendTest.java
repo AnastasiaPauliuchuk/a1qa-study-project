@@ -4,8 +4,10 @@ import org.testng.annotations.BeforeTest;
 import vk.UserAccount;
 import vk.pages.VKHomePage;
 import vk.pages.VKPage;
+import vk.utils.UserManager;
 import webdriver.BaseTest;
-import webdriver.PropertiesResourceManager;
+
+import java.util.ArrayList;
 
 import static vk.tests.VKTestMethods.testSendMessage;
 
@@ -15,15 +17,15 @@ import static vk.tests.VKTestMethods.testSendMessage;
  */
 public class VKSendTest extends BaseTest {
 
-    private static String testDataFile = "vkTestData.properties";
     private static UserAccount user1;
     private static UserAccount user2;
 
     @BeforeTest
     private void setUp() {
-        PropertiesResourceManager prop = new PropertiesResourceManager(testDataFile);
-        user1 = new UserAccount(prop.getProperty("user1.login"), prop.getProperty("user1.password"), prop.getProperty("user1.id"), prop.getProperty("user1.lang"));
-        user2 = new UserAccount(prop.getProperty("user2.login"), prop.getProperty("user2.password"), prop.getProperty("user2.id"), prop.getProperty("user2.lang"));
+
+        ArrayList<UserAccount> users = UserManager.createUserAccountsForMessaging();
+        user1 = users.get(0);
+        user2 = users.get(1);
     }
 
 

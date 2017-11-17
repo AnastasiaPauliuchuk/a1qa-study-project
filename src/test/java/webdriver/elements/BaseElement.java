@@ -168,6 +168,15 @@ public abstract class BaseElement extends BaseEntity {
         Assert.assertTrue(formatLogMsg(getLoc("loc.is.absent")), element.isDisplayed());
     }
 
+    public void waitForIsElementVisible() {
+        waitForIsElementPresent();
+        isVisible();
+        if (!element.isDisplayed()) {//Browser.getTroubleShooting
+            performTroubleShooting();
+        }
+        //  Assert.assertTrue(formatLogMsg(getLoc("loc.is.absent")), element.isDisplayed());
+    }
+
     /**
      * Performing troubleshooting via changing active locator, output log and report.
      */
